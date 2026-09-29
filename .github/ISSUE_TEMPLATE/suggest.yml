@@ -1,0 +1,23 @@
+name: Suggest a project or correction
+description: Add a useful project or improve an existing record.
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Project name and official URL
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed addition or correction
+      description: Explain the category and the practical use for agents.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Primary sources
+      description: Link upstream documentation supporting the description.
+    validations:
+      required: true

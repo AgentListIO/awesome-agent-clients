@@ -1,0 +1,143 @@
+{
+  "title": "Awesome Agent Clients",
+  "subtitle": "A better workspace for the agents you already use.",
+  "description": "Desktop, terminal, mobile, and web clients for coding agents, organized by how you work.",
+  "scope": "Interfaces that run, steer, review, or resume an existing coding-agent harness. General chat frontends and standalone agent frameworks belong elsewhere.",
+  "questions": [
+    "Which agent harnesses and authentication methods does it support?",
+    "Where does the agent execute: your machine, a server you manage, or a hosted environment?",
+    "Can you review diffs, approve actions, and resume work from another device?"
+  ],
+  "sections": [
+    {
+      "title": "Desktop and project workspaces",
+      "projects": [
+        {
+          "name": "AionUi",
+          "url": "https://github.com/iOfficeAI/AionUi",
+          "description": "Cowork app that brings multiple CLI agents into a shared desktop interface.",
+          "kind": "Desktop app",
+          "source": "https://github.com/iOfficeAI/AionUi#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "CodeNomad",
+          "url": "https://github.com/NeuralNomadsAI/CodeNomad",
+          "description": "Desktop and browser workspace for OpenCode sessions, projects, and Git worktrees.",
+          "kind": "OpenCode client",
+          "source": "https://github.com/NeuralNomadsAI/CodeNomad#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "CodexMonitor",
+          "url": "https://github.com/Dimillian/CodexMonitor",
+          "description": "Tauri app for managing Codex conversations and agents across local workspaces.",
+          "kind": "Codex client",
+          "source": "https://github.com/Dimillian/CodexMonitor#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "Nimbalyst",
+          "url": "https://github.com/nimbalyst/nimbalyst",
+          "description": "Visual workspace for managing coding-agent sessions and reviewing their work.",
+          "kind": "Desktop app",
+          "source": "https://github.com/nimbalyst/nimbalyst#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "opcode",
+          "url": "https://github.com/winfunc/opcode",
+          "description": "Desktop GUI for Claude Code sessions, custom agents, and usage tracking.",
+          "kind": "Claude Code client",
+          "source": "https://github.com/winfunc/opcode#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "OpenChamber",
+          "url": "https://github.com/openchamber/openchamber",
+          "description": "Workspace for running and reviewing OpenCode-powered coding work across desktop and web.",
+          "kind": "OpenCode client",
+          "source": "https://github.com/openchamber/openchamber#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "OpenWork",
+          "url": "https://github.com/different-ai/openwork",
+          "description": "OpenCode-powered desktop cowork app for working with local files and shared capabilities.",
+          "kind": "Desktop app",
+          "source": "https://github.com/different-ai/openwork#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "Vibe Kanban",
+          "url": "https://github.com/BloopAI/vibe-kanban",
+          "description": "Task board and workspaces for planning coding-agent work and reviewing diffs.",
+          "kind": "Agent workbench",
+          "source": "https://github.com/BloopAI/vibe-kanban#readme",
+          "checked": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "title": "Mobile and remote access",
+      "projects": [
+        {
+          "name": "CloudCLI",
+          "url": "https://github.com/siteboon/claudecodeui",
+          "description": "Web interface for accessing coding-agent sessions and projects from desktop or mobile browsers.",
+          "kind": "Web client",
+          "source": "https://github.com/siteboon/claudecodeui#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "Happy",
+          "url": "https://github.com/slopus/happy",
+          "description": "Mobile and web client for interacting with Claude Code and Codex sessions.",
+          "kind": "Mobile and web client",
+          "source": "https://github.com/slopus/happy#readme",
+          "checked": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "title": "Terminal and session navigation",
+      "projects": [
+        {
+          "name": "Agent Sessions",
+          "url": "https://github.com/jazzyalex/agent-sessions",
+          "description": "macOS app for searching local coding-agent histories and resuming supported sessions.",
+          "kind": "Session browser",
+          "source": "https://github.com/jazzyalex/agent-sessions#readme",
+          "checked": "2026-09-29"
+        },
+        {
+          "name": "Claude Squad",
+          "url": "https://github.com/smtg-ai/claude-squad",
+          "description": "Terminal interface for managing several coding-agent sessions in parallel.",
+          "kind": "Terminal app",
+          "source": "https://github.com/smtg-ai/claude-squad#readme",
+          "checked": "2026-09-29"
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "name": "1shiharat/awesome-agent-clients",
+      "url": "https://github.com/1shiharat/awesome-agent-clients",
+      "description": "A broader directory of clients and orchestrators."
+    },
+    {
+      "name": "hesreallyhim/awesome-claude-code",
+      "url": "https://github.com/hesreallyhim/awesome-claude-code",
+      "description": "Community resources for the Claude Code ecosystem."
+    },
+    {
+      "name": "subinium/awesome-claude-code",
+      "url": "https://github.com/subinium/awesome-claude-code",
+      "description": "Claude Code tools, extensions, and integrations."
+    }
+  ],
+  "slug": "awesome-agent-clients",
+  "checked": "2026-09-29"
+}
