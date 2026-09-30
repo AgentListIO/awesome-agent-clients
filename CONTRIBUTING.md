@@ -27,6 +27,8 @@ Commit both `list.json` and the generated `README.md`. The check verifies record
 
 `decisions` feeds the choice table. Each row has `need`, `fit`, `distinction`, `unknown`, and an HTTPS `source`. Use 6 to 14 situations, not one row per project.
 
+Keep each project description between 35 and 65 words. Say what the tool is and the distinction that would change a choice. Do not write "the README says," "not installed," "not read on this pass," or a hands-on-testing disclaimer in an entry. The generated README states once that these lists were not install-tested.
+
 Descriptions and list data are dedicated to the public domain under [CC0](LICENSE). Each linked project retains its own license. Entries are editorial records, not endorsements or paid placements.
 
 ## Write for someone choosing a tool
