@@ -16,6 +16,10 @@ You already have a coding agent. The next question is how you want to work with 
 
 Interfaces that run, steer, review, or resume an existing coding-agent harness. General chat frontends and standalone agent frameworks belong elsewhere.
 
+## Practical guides
+
+- [Control and review coding agents from your phone](guides/control-coding-agents-from-your-phone.md) — compare native remote access, Happy, and CloudCLI; check execution location, approvals, and session continuity.
+
 ## Contents
 
 - [How to choose](#how-to-choose)
