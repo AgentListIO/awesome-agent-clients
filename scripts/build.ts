@@ -54,6 +54,8 @@ const lines = [
   `**${list.subtitle}**`, '',
   list.introduction, '',
   list.scope, '',
+  '## Practical guides', '',
+  '- [Control and review coding agents from your phone](guides/control-coding-agents-from-your-phone.md) — compare native remote access, Happy, and CloudCLI; check execution location, approvals, and session continuity.', '',
   '## Contents', '',
   '- [How to choose](#how-to-choose)',
   ...list.sections.map(section => `- [${section.title}](#${slug(section.title)})`),
