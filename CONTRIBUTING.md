@@ -26,3 +26,7 @@ bun run check
 Commit both `list.json` and the generated `README.md`. The check verifies record fields, duplicate URLs, and that the README matches the data; it does not verify live links or project capabilities. Change an entry’s `checked` date only after checking its upstream documentation.
 
 Descriptions and list data are dedicated to the public domain under [CC0](LICENSE). Each linked project retains its own license. Entries are editorial records, not endorsements or paid placements.
+
+## Write for someone choosing a tool
+
+Explain the task the tool helps with and the setup it fits. Where official sources support them, describe compatibility, execution location, required access, retained data, human approval or review, and a material limitation. Link the evidence for specific claims. Mark missing evidence as unknown; distinguish documented support from hands-on testing. Do not infer compatibility from a shared protocol alone or equate a local interface with local execution or storage.

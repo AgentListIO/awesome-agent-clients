@@ -10,6 +10,10 @@
 
 12 projects · Upstream documentation checked 2026-09-29. Curated by [agentlist.io](https://www.agentlist.io).
 
+**Bring your own agent. Find a better way to work with it.**
+
+You already have a coding agent. The next question is how you want to work with it: review changes in a desktop workspace, steer a session from your phone, or keep several projects moving from a terminal. Start with the agent you use and the task you want to make easier.
+
 Interfaces that run, steer, review, or resume an existing coding-agent harness. General chat frontends and standalone agent frameworks belong elsewhere.
 
 ## Contents
@@ -24,9 +28,14 @@ Interfaces that run, steer, review, or resume an existing coding-agent harness. 
 
 ## How to choose
 
-- Which agent harnesses and authentication methods does it support?
-- Where does the agent execute: your machine, a server you manage, or a hosted environment?
-- Can you review diffs, approve actions, and resume work from another device?
+- Works with: Does it support your existing agent, login method, and operating system? A transcript viewer and a client that can start or steer work offer different capabilities.
+- Runs where: Where does the interface run, and where does the agent execute? A local desktop app can still depend on cloud services.
+- Needs access to: Which repositories, files, credentials, and remote connections must you give it?
+- Keeps what: Can you resume sessions, inspect changes, and export history? What remains available if you switch clients?
+- Human involvement: Can you approve actions and review results? Does background work continue when you close the interface?
+- Main limitation: What would rule it out for your setup: agent support, platform support, remote access, or missing review controls?
+
+Use these questions to narrow your shortlist. An entry’s source link records the documentation used for its description; it does not mean every question above has been answered or tested. Treat undocumented capabilities as unknown, and confirm requirements against the linked project before adopting it.
 
 ## Desktop and project workspaces
 

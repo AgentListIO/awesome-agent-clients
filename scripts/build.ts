@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
 
 type Project = { name: string; url: string; description: string; kind: string; source: string; checked: string }
-type List = { title: string; slug: string; description: string; scope: string; questions: string[]; sections: { title: string; projects: Project[] }[]; related: { name: string; url: string; description: string }[] }
+type List = { title: string; introduction: string; subtitle: string; slug: string; description: string; scope: string; questions: string[]; sections: { title: string; projects: Project[] }[]; related: { name: string; url: string; description: string }[] }
 const root = fileURLToPath(new URL('../', import.meta.url))
 const list: List = JSON.parse(readFileSync(resolve(root, 'list.json'), 'utf8'))
 const assert = (ok: unknown, message: string) => { if (!ok) throw new Error(message) }
@@ -19,7 +19,7 @@ const family = [
   ['Awesome Agent Orchestration', 'awesome-agent-orchestration'],
   ['Awesome Agent Observability', 'awesome-agent-observability'],
 ]
-assert(list.title && list.description && list.scope, 'Missing list metadata')
+assert(list.title && list.description && list.scope && list.introduction && list.subtitle, 'Missing list metadata')
 assert(/^awesome-agent-[a-z-]+$/.test(list.slug), 'Invalid repository slug')
 assert(list.sections.length && list.questions.length && list.related.length, 'Missing sections, guidance, or related lists')
 const entries = list.sections.flatMap(section => section.projects)
@@ -51,6 +51,8 @@ const lines = [
   '[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-f04424.svg)](CONTRIBUTING.md) [![CC0](https://img.shields.io/badge/license-CC0_1.0-6b6a64.svg)](LICENSE)', '',
   `> ${list.description}`, '',
   `${entries.length} projects · Upstream documentation checked ${checkRange}. Curated by [agentlist.io](https://www.agentlist.io).`, '',
+  `**${list.subtitle}**`, '',
+  list.introduction, '',
   list.scope, '',
   '## Contents', '',
   '- [How to choose](#how-to-choose)',
@@ -60,6 +62,7 @@ const lines = [
   '- [Contributing](#contributing)', '',
   '## How to choose', '',
   ...list.questions.map(question => `- ${question}`), '',
+  'Use these questions to narrow your shortlist. An entry’s source link records the documentation used for its description; it does not mean every question above has been answered or tested. Treat undocumented capabilities as unknown, and confirm requirements against the linked project before adopting it.', '',
 ]
 for (const section of list.sections) {
   lines.push(`## ${section.title}`, '')
