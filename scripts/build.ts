@@ -3,7 +3,8 @@ import { fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
 
 type Project = { name: string; url: string; description: string; kind: string; source: string; checked: string }
-type Decision = { need: string; fit: string; distinction: string; unknown: string; source: string }
+type DecisionSource = { name: string; url: string }
+type Decision = { need: string; fit: string; distinction: string; unknown: string; sources: DecisionSource[] }
 type List = { title: string; introduction: string; subtitle: string; slug: string; description: string; scope: string; questions: string[]; decisions: Decision[]; sections: { title: string; projects: Project[] }[]; related: { name: string; url: string; description: string }[] }
 const root = fileURLToPath(new URL('../', import.meta.url))
 const list: List = JSON.parse(readFileSync(resolve(root, 'list.json'), 'utf8'))
@@ -44,13 +45,31 @@ for (const section of list.sections) {
 for (const related of list.related) { https(related.url); assert(related.name && related.description, 'Missing related-list fields') }
 assert(list.decisions.length >= 6 && list.decisions.length <= 14, 'Decision table must have 6 to 14 rows')
 const decisionNeeds = new Set<string>()
+const escapeName = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 for (const row of list.decisions) {
-  assert(row.need && row.fit && row.distinction && row.unknown && row.source, 'Missing decision fields')
+  assert(row.need && row.fit && row.distinction && row.unknown, 'Missing decision fields')
+  assert(!('source' in row), `Decision still uses a single source: ${row.need}`)
+  assert(Array.isArray(row.sources) && row.sources.length > 0 && row.sources.length <= 8, `Decision sources: ${row.need}`)
   assert(!decisionNeeds.has(row.need), `Duplicate decision: ${row.need}`)
   decisionNeeds.add(row.need)
-  https(row.source)
+  const labels = new Set<string>()
+  for (const item of row.sources) {
+    assert(item.name && item.url, `Missing decision source: ${row.need}`)
+    assert(!labels.has(item.name), `Duplicate decision source: ${item.name}`)
+    labels.add(item.name)
+    https(item.url)
+    assert(!/[\r\n|]/.test(item.name), `Unexpected Markdown delimiter in decision source: ${item.name}`)
+  }
   assert(!/[\r\n|]/.test([row.need, row.fit, row.distinction, row.unknown].join('')), `Unexpected Markdown delimiter in decision: ${row.need}`)
   assert(row.need.length <= 110 && row.fit.length <= 180 && row.distinction.length <= 260 && row.unknown.length <= 200, `Decision row is too long: ${row.need}`)
+  let haystack = [row.need, row.fit, row.distinction, row.unknown].join('\n')
+  for (const project of [...entries].sort((a, b) => b.name.length - a.name.length)) {
+    const pattern = new RegExp(`(^|[^A-Za-z0-9])${escapeName(project.name)}([^A-Za-z0-9]|$)`)
+    if (pattern.test(haystack)) {
+      assert(labels.has(project.name), `Decision names ${project.name} without its own source: ${row.need}`)
+      haystack = haystack.replaceAll(project.name, ' ')
+    }
+  }
 }
 const dates = entries.map(project => project.checked).sort()
 const checkRange = dates[0] === dates.at(-1) ? dates[0] : `${dates[0]}–${dates.at(-1)}`
@@ -78,10 +97,10 @@ const lines = [
   ...list.questions.map(question => `- ${question}`), '',
   'Use these questions with the decision table. Every entry summarizes its linked documentation. These lists were not install-tested, so entries do not repeat that. A capability the linked page does not state is unknown.', '',
   '## Decision table', '',
-  'Rows are situations a cited page can separate. A project missing from a row is still in the catalog below. Unresolved means the cited page does not say.', '',
-  '| When you need | Documented fit | What the docs separate | Unresolved | Source |',
+  'Start with your requirement. These examples highlight documented differences; they are not rankings.', '',
+  '| When you need | Documented fit | Key distinction | Unresolved | Source |',
   '| --- | --- | --- | --- | --- |',
-  ...list.decisions.map(row => `| ${row.need} | ${row.fit} | ${row.distinction} | ${row.unknown} | [source](${row.source}) |`),
+  ...list.decisions.map(row => `| ${row.need} | ${row.fit} | ${row.distinction} | ${row.unknown} | ${row.sources.map(item => `[${item.name}](${item.url})`).join(', ')} |`),
   '',
 ]
 for (const section of list.sections) {

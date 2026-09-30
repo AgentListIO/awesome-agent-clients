@@ -16,78 +16,197 @@
       "need": "A phone or remote UI while the agent stays on the computer that has the CLI",
       "fit": "Happy, CodexMonitor, Orca, and Paseo use a phone or browser while the CLI stays on that computer.",
       "distinction": "You run happy claude or happy codex on the computer, then the phone restarts that session in remote mode. The phone does not host the agent.",
-      "unknown": "Unknown: the Happy README does not say whether the wrapper keeps running if that computer sleeps.",
-      "source": "https://github.com/slopus/happy"
+      "unknown": "Host availability: the CLI runs on that computer, so the computer has to stay available for the phone or browser session.",
+      "sources": [
+        {
+          "name": "Happy",
+          "url": "https://github.com/slopus/happy#readme"
+        },
+        {
+          "name": "CodexMonitor",
+          "url": "https://github.com/Dimillian/CodexMonitor#readme"
+        },
+        {
+          "name": "Orca",
+          "url": "https://github.com/stablyai/orca#readme"
+        },
+        {
+          "name": "Paseo",
+          "url": "https://github.com/getpaseo/paseo#readme"
+        }
+      ]
     },
     {
       "need": "Review saved transcripts, or start and steer an agent",
       "fit": "Agent Sessions reads local transcripts and can resume some CLIs. opcode and claudecode.nvim start or steer Claude Code.",
       "distinction": "The Agent Sessions README lists OpenClaw, Cline, and DeepSeek Harness as browse-only, with no resume. Supported resumes copy a command or open Terminal, iTerm2, or Warp.",
-      "unknown": "Unknown: the README marks Qwen Code end-to-end resume and fx interactive reopen as unverified.",
-      "source": "https://github.com/jazzyalex/agent-sessions"
+      "unknown": "Unknown: the Agent Sessions README marks Qwen Code end-to-end resume and fx interactive reopen as unverified.",
+      "sources": [
+        {
+          "name": "Agent Sessions",
+          "url": "https://github.com/jazzyalex/agent-sessions#readme"
+        },
+        {
+          "name": "opcode",
+          "url": "https://github.com/winfunc/opcode#readme"
+        },
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim#readme"
+        }
+      ]
     },
     {
       "need": "Claude Code only, or several installed CLIs",
       "fit": "opcode and claudecode.nvim are Claude Code clients. Vibe Kanban and Cline Kanban start several installed CLIs.",
       "distinction": "The opcode README is a desktop GUI for Claude Code sessions and for custom agents that still use Claude models. Vibe Kanban's README names Claude Code, Codex, Gemini CLI, Copilot, Cursor, and OpenCode.",
-      "unknown": "Cited page covers this for opcode. It does not say whether a custom agent can launch a non-Claude CLI.",
-      "source": "https://github.com/winfunc/opcode"
+      "unknown": "Unknown: opcode's README does not say whether a custom agent can launch a non-Claude CLI.",
+      "sources": [
+        {
+          "name": "opcode",
+          "url": "https://github.com/winfunc/opcode#readme"
+        },
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim#readme"
+        },
+        {
+          "name": "Vibe Kanban",
+          "url": "https://github.com/BloopAI/vibe-kanban#readme"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban#readme"
+        }
+      ]
     },
     {
       "need": "A branch or worktree for each agent",
       "fit": "Vibe Kanban, Cline Kanban, and Sculptor give each task its own branch or worktree.",
       "distinction": "Vibe Kanban gives the agent a branch, a terminal, and a dev server. Cline Kanban creates an ephemeral git worktree per card. Sculptor's README calls a workspace an isolated copy of your code.",
       "unknown": "Unknown: the Vibe Kanban README does not say whether two agents can share one branch.",
-      "source": "https://github.com/BloopAI/vibe-kanban"
+      "sources": [
+        {
+          "name": "Vibe Kanban",
+          "url": "https://github.com/BloopAI/vibe-kanban#readme"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban#readme"
+        },
+        {
+          "name": "Sculptor",
+          "url": "https://github.com/imbue-ai/sculptor#readme"
+        }
+      ]
     },
     {
       "need": "An editor plugin, or a separate app",
       "fit": "claudecode.nvim runs inside Neovim. opcode and Toad are separate apps, one desktop and one terminal UI.",
       "distinction": "claudecode.nvim starts the Claude Code CLI from a split in Neovim and shows proposed edits as Neovim diffs. opcode and Toad are apps you launch outside the editor.",
-      "unknown": "Unknown: the claudecode.nvim README does not say whether the CLI keeps running after Neovim quits.",
-      "source": "https://github.com/coder/claudecode.nvim"
+      "unknown": "The plugin connects the CLI while Neovim is open. A session that outlives the editor is not stated.",
+      "sources": [
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim#readme"
+        },
+        {
+          "name": "opcode",
+          "url": "https://github.com/winfunc/opcode#readme"
+        },
+        {
+          "name": "Toad",
+          "url": "https://github.com/batrachianai/toad#readme"
+        }
+      ]
     },
     {
       "need": "A terminal UI that owns existing CLI processes",
       "fit": "herdr owns the terminals of CLIs you already run. Toad launches agents through the Agent Client Protocol.",
       "distinction": "herdr does not wrap or replace those agents. It owns their terminals, with panes marked working, blocked, or idle. The background server keeps running when the client closes.",
-      "unknown": "Unknown: after a restart the original processes do not survive, and the README does not list which sessions can resume.",
-      "source": "https://github.com/herdrdev/herdr"
+      "unknown": "After a restart the original processes do not survive. Unknown which of those sessions can resume.",
+      "sources": [
+        {
+          "name": "herdr",
+          "url": "https://github.com/herdrdev/herdr#readme"
+        },
+        {
+          "name": "Toad",
+          "url": "https://github.com/batrachianai/toad#readme"
+        }
+      ]
     },
     {
       "need": "A team board over installed harnesses",
       "fit": "Vibe Kanban and Cline Kanban run installed CLIs from a kanban. They do not replace the harness.",
       "distinction": "Vibe Kanban plans on a board and starts an installed CLI in a workspace with a branch and terminal. Cline Kanban detects the installed CLI and gives every card its own terminal and worktree.",
       "unknown": "Unknown: Cline Kanban launches the CLI it finds and does not list every supported name.",
-      "source": "https://github.com/cline/kanban"
+      "sources": [
+        {
+          "name": "Vibe Kanban",
+          "url": "https://github.com/BloopAI/vibe-kanban#readme"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban#readme"
+        }
+      ]
     },
     {
       "need": "Vibe Kanban's sunset versus boards that do not announce one",
       "fit": "Vibe Kanban's company is shutting down. Cline Kanban's README does not announce a sunset.",
       "distinction": "The announcement says the repo stays open source and community maintained, the current version can export data, and remote services for issues, comments, projects, and organisations remain 30 days, then the app is local-only.",
       "unknown": "Unknown: the announcement states a 30-day remote window and gives no calendar date.",
-      "source": "https://www.vibekanban.com/blog/shutdown"
+      "sources": [
+        {
+          "name": "Vibe Kanban",
+          "url": "https://www.vibekanban.com/blog/shutdown"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban#readme"
+        }
+      ]
     },
     {
       "need": "Where the agent runs if Proliferate's control plane is remote",
       "fit": "Proliferate documents a macOS app and a self-hosted control plane. Happy starts the agent on your computer.",
       "distinction": "Proliferate runs each agent through its native harness, and the desktop app can point at a Docker or cloud control plane. It never names the machine that then executes the agent.",
       "unknown": "Unknown: a remote control plane is documented, but not which machine executes the agent.",
-      "source": "https://github.com/proliferate-ai/proliferate"
+      "sources": [
+        {
+          "name": "Proliferate",
+          "url": "https://github.com/proliferate-ai/proliferate#readme"
+        },
+        {
+          "name": "Happy",
+          "url": "https://github.com/slopus/happy#readme"
+        }
+      ]
     },
     {
       "need": "How claudecode.nvim connects Neovim to Claude Code",
       "fit": "claudecode.nvim starts the Claude Code CLI and connects it to a WebSocket server the plugin creates.",
       "distinction": "The plugin creates a WebSocket server on a random port, writes a lock file in the Claude ide directory, and sets environment variables so the Claude Code CLI can connect.",
       "unknown": "Unknown: the README does not say whether that WebSocket server listens only on localhost.",
-      "source": "https://github.com/coder/claudecode.nvim"
+      "sources": [
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim#readme"
+        }
+      ]
     },
     {
-      "need": "Whether a client documents an export format for sessions",
-      "fit": "Vibe Kanban's current version can export data. AionUi, CodexMonitor, Toad, and Happy do not document one here.",
-      "distinction": "The shutdown post says the latest version includes a data export feature. Export-only sentences were removed from other client entries so this row holds that shared gap.",
-      "unknown": "Unknown: a documented export format was not rechecked for every client, so one could still exist.",
-      "source": "https://www.vibekanban.com/blog/shutdown"
+      "need": "Whether the Vibe Kanban shutdown note documents an export",
+      "fit": "Vibe Kanban's current version can export data.",
+      "distinction": "The shutdown post says the latest version includes a data export feature. It does not name a file format or a schema.",
+      "unknown": "Unknown: the post does not name the export format or which records it includes.",
+      "sources": [
+        {
+          "name": "Vibe Kanban",
+          "url": "https://www.vibekanban.com/blog/shutdown"
+        }
+      ]
     }
   ],
   "sections": [
