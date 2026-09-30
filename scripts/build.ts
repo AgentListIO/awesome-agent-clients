@@ -3,7 +3,8 @@ import { fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
 
 type Project = { name: string; url: string; description: string; kind: string; source: string; checked: string }
-type List = { title: string; introduction: string; subtitle: string; slug: string; description: string; scope: string; questions: string[]; sections: { title: string; projects: Project[] }[]; related: { name: string; url: string; description: string }[] }
+type Decision = { need: string; fit: string; distinction: string; unknown: string; source: string }
+type List = { title: string; introduction: string; subtitle: string; slug: string; description: string; scope: string; questions: string[]; decisions: Decision[]; sections: { title: string; projects: Project[] }[]; related: { name: string; url: string; description: string }[] }
 const root = fileURLToPath(new URL('../', import.meta.url))
 const list: List = JSON.parse(readFileSync(resolve(root, 'list.json'), 'utf8'))
 const assert = (ok: unknown, message: string) => { if (!ok) throw new Error(message) }
@@ -41,6 +42,16 @@ for (const section of list.sections) {
   }
 }
 for (const related of list.related) { https(related.url); assert(related.name && related.description, 'Missing related-list fields') }
+assert(list.decisions.length >= 6 && list.decisions.length <= 14, 'Decision table must have 6 to 14 rows')
+const decisionNeeds = new Set<string>()
+for (const row of list.decisions) {
+  assert(row.need && row.fit && row.distinction && row.unknown && row.source, 'Missing decision fields')
+  assert(!decisionNeeds.has(row.need), `Duplicate decision: ${row.need}`)
+  decisionNeeds.add(row.need)
+  https(row.source)
+  assert(!/[\r\n|]/.test([row.need, row.fit, row.distinction, row.unknown].join('')), `Unexpected Markdown delimiter in decision: ${row.need}`)
+  assert(row.need.length <= 110 && row.fit.length <= 180 && row.distinction.length <= 260 && row.unknown.length <= 200, `Decision row is too long: ${row.need}`)
+}
 const dates = entries.map(project => project.checked).sort()
 const checkRange = dates[0] === dates.at(-1) ? dates[0] : `${dates[0]}–${dates.at(-1)}`
 const lines = [
@@ -58,6 +69,7 @@ const lines = [
   '- [Control and review coding agents from your phone](guides/control-coding-agents-from-your-phone.md) — compare native remote access, Happy, and CloudCLI; check execution location, approvals, and session continuity.', '',
   '## Contents', '',
   '- [How to choose](#how-to-choose)',
+  '- [Decision table](#decision-table)',
   ...list.sections.map(section => `- [${section.title}](#${slug(section.title)})`),
   '- [Related awesome lists](#related-awesome-lists)',
   '- [More from Agentlist](#more-from-agentlist)',
@@ -65,6 +77,12 @@ const lines = [
   '## How to choose', '',
   ...list.questions.map(question => `- ${question}`), '',
   'Use these questions to narrow your shortlist. An entry’s source link records the documentation used for its description; it does not mean every question above has been answered or tested. Treat undocumented capabilities as unknown, and confirm requirements against the linked project before adopting it.', '',
+  '## Decision table', '',
+  'Rows are situations a cited page can separate. A project missing from a row is still in the catalog below. Unresolved means the cited page does not say.', '',
+  '| When you need | Documented fit | What the docs separate | Unresolved | Source |',
+  '| --- | --- | --- | --- | --- |',
+  ...list.decisions.map(row => `| ${row.need} | ${row.fit} | ${row.distinction} | ${row.unknown} | [source](${row.source}) |`),
+  '',
 ]
 for (const section of list.sections) {
   lines.push(`## ${section.title}`, '')

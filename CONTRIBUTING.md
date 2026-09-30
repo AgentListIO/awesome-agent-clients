@@ -25,8 +25,14 @@ bun run check
 
 Commit both `list.json` and the generated `README.md`. The check verifies record fields, duplicate URLs, and that the README matches the data; it does not verify live links or project capabilities. Change an entry’s `checked` date only after checking its upstream documentation.
 
+`decisions` feeds the choice table. Each row has `need`, `fit`, `distinction`, `unknown`, and an HTTPS `source`. Use 6 to 14 situations, not one row per project.
+
 Descriptions and list data are dedicated to the public domain under [CC0](LICENSE). Each linked project retains its own license. Entries are editorial records, not endorsements or paid placements.
 
 ## Write for someone choosing a tool
 
-Explain the task the tool helps with and the setup it fits. Where official sources support them, describe compatibility, execution location, required access, retained data, human approval or review, and a material limitation. Link the evidence for specific claims. Mark missing evidence as unknown; distinguish documented support from hands-on testing. Do not infer compatibility from a shared protocol alone or equate a local interface with local execution or storage.
+Explain the task the tool helps with and the setup it fits. Put facts that differ across tools in the decision table, one row per situation, with the page you used. A project description should say what the tool is and the distinction that would change a choice. Do not repeat the same six caveats in every entry, and do not add a “not tested” sentence; the generated README already says inclusion is not hands-on testing.
+
+Where a source supports a specific claim about compatibility, execution location, access, retained data, human review, license terms, or maintenance status, keep that claim and link it. Mark a missing fact as unknown. Do not infer compatibility from a shared protocol alone or equate a local interface with local execution or storage. Do not treat a quiet commit history as abandonment. State deprecation, archival, or maintenance mode only when the project says so.
+
+Keep descriptions free of promotional superlatives, star counts, prices, and benchmark percentages. Do not repeat an isolation or privacy claim as if this list certified it. Name the mechanism the documentation names, or leave it unknown.
