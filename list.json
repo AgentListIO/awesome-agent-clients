@@ -11,6 +11,204 @@
     "Human involvement: Can you approve actions and review results? Does background work continue when you close the interface?",
     "Main limitation: What would rule it out for your setup: agent support, platform support, remote access, or missing review controls?"
   ],
+  "decisions": [
+    {
+      "need": "A phone or remote UI while the agent stays on the computer that has the CLI",
+      "fit": "Happy, CodexMonitor, Orca, and Paseo use a phone or browser while the CLI stays on that computer.",
+      "distinction": "You run happy claude or happy codex on the computer, then the phone restarts that session in remote mode. The phone does not host the agent.",
+      "unknown": "Host availability: the CLI runs on that computer, so the computer has to stay available for the phone or browser session.",
+      "sources": [
+        {
+          "name": "Happy",
+          "url": "https://github.com/slopus/happy#readme"
+        },
+        {
+          "name": "CodexMonitor",
+          "url": "https://github.com/Dimillian/CodexMonitor#readme"
+        },
+        {
+          "name": "Orca",
+          "url": "https://github.com/stablyai/orca#readme"
+        },
+        {
+          "name": "Paseo",
+          "url": "https://github.com/getpaseo/paseo#readme"
+        }
+      ]
+    },
+    {
+      "need": "Review saved transcripts, or start and steer an agent",
+      "fit": "Agent Sessions reads local transcripts and can resume some CLIs. opcode and claudecode.nvim start or steer Claude Code.",
+      "distinction": "The Agent Sessions README lists OpenClaw, Cline, and DeepSeek Harness as browse-only, with no resume. Supported resumes copy a command or open Terminal, iTerm2, or Warp.",
+      "unknown": "Unknown: the Agent Sessions README marks Qwen Code end-to-end resume and fx interactive reopen as unverified.",
+      "sources": [
+        {
+          "name": "Agent Sessions",
+          "url": "https://github.com/jazzyalex/agent-sessions#readme"
+        },
+        {
+          "name": "opcode",
+          "url": "https://github.com/winfunc/opcode#readme"
+        },
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim#readme"
+        }
+      ]
+    },
+    {
+      "need": "Claude Code only, or several installed CLIs",
+      "fit": "opcode and claudecode.nvim are Claude Code clients. Vibe Kanban and Cline Kanban start several installed CLIs.",
+      "distinction": "The opcode README is a desktop GUI for Claude Code sessions and for custom agents that still use Claude models. Vibe Kanban's README names Claude Code, Codex, Gemini CLI, Copilot, Cursor, and OpenCode.",
+      "unknown": "Unknown: opcode's README does not say whether a custom agent can launch a non-Claude CLI.",
+      "sources": [
+        {
+          "name": "opcode",
+          "url": "https://github.com/winfunc/opcode#readme"
+        },
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim#readme"
+        },
+        {
+          "name": "Vibe Kanban",
+          "url": "https://github.com/BloopAI/vibe-kanban#readme"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban#readme"
+        }
+      ]
+    },
+    {
+      "need": "A branch or worktree for each agent",
+      "fit": "Vibe Kanban, Cline Kanban, and Sculptor give each task its own branch or worktree.",
+      "distinction": "Vibe Kanban gives the agent a branch, a terminal, and a dev server. Cline Kanban creates an ephemeral git worktree per card. Sculptor's README calls a workspace an isolated copy of your code.",
+      "unknown": "Unknown: the Vibe Kanban README does not say whether two agents can share one branch.",
+      "sources": [
+        {
+          "name": "Vibe Kanban",
+          "url": "https://github.com/BloopAI/vibe-kanban#readme"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban#readme"
+        },
+        {
+          "name": "Sculptor",
+          "url": "https://github.com/imbue-ai/sculptor#readme"
+        }
+      ]
+    },
+    {
+      "need": "An editor plugin, or a separate app",
+      "fit": "claudecode.nvim runs inside Neovim. opcode and Toad are separate apps, one desktop and one terminal UI.",
+      "distinction": "claudecode.nvim starts the Claude Code CLI from a split in Neovim and shows proposed edits as Neovim diffs. opcode and Toad are apps you launch outside the editor.",
+      "unknown": "The plugin connects the CLI while Neovim is open. A session that outlives the editor is not stated.",
+      "sources": [
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim#readme"
+        },
+        {
+          "name": "opcode",
+          "url": "https://github.com/winfunc/opcode#readme"
+        },
+        {
+          "name": "Toad",
+          "url": "https://github.com/batrachianai/toad#readme"
+        }
+      ]
+    },
+    {
+      "need": "A terminal UI that owns existing CLI processes",
+      "fit": "herdr owns the terminals of CLIs you already run. Toad launches agents through the Agent Client Protocol.",
+      "distinction": "herdr does not wrap or replace those agents. It owns their terminals, with panes marked working, blocked, or idle. The background server keeps running when the client closes.",
+      "unknown": "After a restart the original processes do not survive. Unknown which of those sessions can resume.",
+      "sources": [
+        {
+          "name": "herdr",
+          "url": "https://github.com/herdrdev/herdr#readme"
+        },
+        {
+          "name": "Toad",
+          "url": "https://github.com/batrachianai/toad#readme"
+        }
+      ]
+    },
+    {
+      "need": "A team board over installed harnesses",
+      "fit": "Vibe Kanban and Cline Kanban run installed CLIs from a kanban. They do not replace the harness.",
+      "distinction": "Vibe Kanban plans on a board and starts an installed CLI in a workspace with a branch and terminal. Cline Kanban detects the installed CLI and gives every card its own terminal and worktree.",
+      "unknown": "Unknown: Cline Kanban launches the CLI it finds and does not list every supported name.",
+      "sources": [
+        {
+          "name": "Vibe Kanban",
+          "url": "https://github.com/BloopAI/vibe-kanban#readme"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban#readme"
+        }
+      ]
+    },
+    {
+      "need": "Vibe Kanban's sunset versus boards that do not announce one",
+      "fit": "Vibe Kanban's company is shutting down. Cline Kanban's README does not announce a sunset.",
+      "distinction": "The announcement says the repo stays open source and community maintained, the current version can export data, and remote services for issues, comments, projects, and organisations remain 30 days, then the app is local-only.",
+      "unknown": "Unknown: the announcement states a 30-day remote window and gives no calendar date.",
+      "sources": [
+        {
+          "name": "Vibe Kanban",
+          "url": "https://www.vibekanban.com/blog/shutdown"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban#readme"
+        }
+      ]
+    },
+    {
+      "need": "Where the agent runs if Proliferate's control plane is remote",
+      "fit": "Proliferate documents a macOS app and a self-hosted control plane. Happy starts the agent on your computer.",
+      "distinction": "Proliferate runs each agent through its native harness, and the desktop app can point at a Docker or cloud control plane. It never names the machine that then executes the agent.",
+      "unknown": "Unknown: a remote control plane is documented, but not which machine executes the agent.",
+      "sources": [
+        {
+          "name": "Proliferate",
+          "url": "https://github.com/proliferate-ai/proliferate#readme"
+        },
+        {
+          "name": "Happy",
+          "url": "https://github.com/slopus/happy#readme"
+        }
+      ]
+    },
+    {
+      "need": "How claudecode.nvim connects Neovim to Claude Code",
+      "fit": "claudecode.nvim starts the Claude Code CLI and connects it to a WebSocket server the plugin creates.",
+      "distinction": "The plugin creates a WebSocket server on a random port, writes a lock file in the Claude ide directory, and sets environment variables so the Claude Code CLI can connect.",
+      "unknown": "Unknown: the README does not say whether that WebSocket server listens only on localhost.",
+      "sources": [
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim#readme"
+        }
+      ]
+    },
+    {
+      "need": "Whether the Vibe Kanban shutdown note documents an export",
+      "fit": "Vibe Kanban's current version can export data.",
+      "distinction": "The shutdown post says the latest version includes a data export feature. It does not name a file format or a schema.",
+      "unknown": "Unknown: the post does not name the export format or which records it includes.",
+      "sources": [
+        {
+          "name": "Vibe Kanban",
+          "url": "https://www.vibekanban.com/blog/shutdown"
+        }
+      ]
+    }
+  ],
   "sections": [
     {
       "title": "Desktop and project workspaces",
@@ -18,66 +216,154 @@
         {
           "name": "AionUi",
           "url": "https://github.com/iOfficeAI/AionUi",
-          "description": "Cowork app that brings multiple CLI agents into a shared desktop interface.",
+          "description": "Desktop cowork app for macOS, Windows, and Linux that uses a built-in agent or attaches installed CLIs such as Claude Code, Codex, Gemini CLI, and OpenCode. It runs locally, with an optional web UI and chat-app gateways, and each agent executes on that machine with its own permission dialog. Team mode shares one folder. Unattended mode exists only when the selected agent exposes it.",
           "kind": "Desktop app",
           "source": "https://github.com/iOfficeAI/AionUi#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "CodeNomad",
           "url": "https://github.com/NeuralNomadsAI/CodeNomad",
-          "description": "Desktop and browser workspace for OpenCode sessions, projects, and Git worktrees.",
+          "description": "Desktop and browser workspace aimed at OpenCode V2. Desktop builds bundle Node.js and connect to a shared OpenCode background service, so closing a window leaves that service and its sessions running; a password-protected server can be opened from a browser, with HTTPS on by default, Git has to be on the backend PATH for worktrees, and OpenCode V1 is not supported.",
           "kind": "OpenCode client",
           "source": "https://github.com/NeuralNomadsAI/CodeNomad#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "CodexMonitor",
           "url": "https://github.com/Dimillian/CodexMonitor",
-          "description": "Tauri app for managing Codex conversations and agents across local workspaces.",
+          "description": "Tauri app that starts one Codex app-server per workspace, resumes threads, and shows approval prompts, diffs, and git state from that protocol. The desktop app is local-first on macOS, Linux, and Windows unless you enable a remote daemon. iOS support is in progress, and the daemon must stay running for a phone to connect.",
           "kind": "Codex client",
           "source": "https://github.com/Dimillian/CodexMonitor#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "Nimbalyst",
           "url": "https://github.com/nimbalyst/nimbalyst",
-          "description": "Visual workspace for managing coding-agent sessions and reviewing their work.",
+          "description": "Desktop workspace for macOS, Windows, and Linux running Codex and Claude Code, plus alpha OpenCode and GitHub Copilot and a Gemini provider. Each session uses its own git worktree, where you accept or reject rendered diffs. An iOS companion can answer, review diffs, and queue tasks while agents stay on the desktop. No isolation boundary exists beyond those worktrees. There is no separate export store.",
           "kind": "Desktop app",
           "source": "https://github.com/nimbalyst/nimbalyst#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "opcode",
           "url": "https://github.com/winfunc/opcode",
-          "description": "Desktop GUI for Claude Code sessions, custom agents, and usage tracking.",
+          "description": "Tauri desktop app for Windows, macOS, and Linux that browses and resumes Claude Code sessions under the Claude projects directory. It can run custom agents in separate processes, with file access set per agent. It talks to the Claude Code CLI, not other vendors' agents. Usage data can be exported, other app data stays on the machine, and separate processes are the only boundary described.",
           "kind": "Claude Code client",
           "source": "https://github.com/winfunc/opcode#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "OpenChamber",
           "url": "https://github.com/openchamber/openchamber",
-          "description": "Workspace for running and reviewing OpenCode-powered coding work across desktop and web.",
+          "description": "Workspace for OpenCode sessions from desktop, a browser, VS Code, or iOS and Android. Desktop builds bundle a matching CLI; other surfaces use one already installed, and a session continues after you close the app. Pairing can use a private end-to-end encrypted relay, or a direct, LAN, tunnel, or SSH path. You review diffs in the UI. It is not affiliated with the OpenCode team.",
           "kind": "OpenCode client",
           "source": "https://github.com/openchamber/openchamber#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "OpenWork",
           "url": "https://github.com/different-ai/openwork",
-          "description": "OpenCode-powered desktop cowork app for working with local files and shared capabilities.",
+          "description": "Desktop app for macOS, Windows, and Linux, built on OpenCode, for local files with your own keys or a local model. One MCP exposes those skills to Codex, Claude Code, or Cursor. Local use needs no OpenWork account. Cloud and the Den org control plane are optional. Paths outside ee/ are MIT, paths under ee/ are the OpenWork EE License, and earlier releases remain FSL-1.1-MIT.",
           "kind": "Desktop app",
           "source": "https://github.com/different-ai/openwork#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "Vibe Kanban",
           "url": "https://github.com/BloopAI/vibe-kanban",
-          "description": "Task board and workspaces for planning coding-agent work and reviewing diffs.",
+          "description": "Local web kanban via npx in a git repo, that runs Claude Code, Codex, Gemini CLI, Copilot, Cursor, and OpenCode. Each workspace has a branch, terminal, and dev server. You review the diff. The company is shutting down. The repo stays open source and community maintained, the current version can export, and remote services for issues, comments, projects, and organisations remain 30 days, then local-only.",
           "kind": "Agent workbench",
           "source": "https://github.com/BloopAI/vibe-kanban#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Orca",
+          "url": "https://github.com/stablyai/orca",
+          "description": "Desktop app for macOS, Windows, and Linux, with iOS and Android companions, that runs Codex, Claude Code, OpenCode, and Pi. Each task gets its own git worktree and terminal on a machine you pick, including a remote host over SSH. You can send a diff comment back to the agent. The phone apps monitor and steer that session rather than hosting the agents.",
+          "kind": "Desktop app",
+          "source": "https://github.com/stablyai/orca#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "T3 Code",
+          "url": "https://github.com/pingdotgg/t3code",
+          "description": "Electron, local web, and iOS and Android clients for harnesses on your computer: Codex, Claude Code, Cursor, Grok Build, OpenCode, and Antigravity. The t3 server there starts the agents and can keep running as a background service, with permission modes and remote access. Transcript storage and export are not described. It is early. Expect bugs. Antigravity is a setting rather than a separate CLI.",
+          "kind": "Desktop and mobile client",
+          "source": "https://github.com/pingdotgg/t3code#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Paseo",
+          "url": "https://github.com/getpaseo/paseo",
+          "description": "Desktop, mobile, web, and CLI clients attach to a daemon on your machine that launches Claude Code, Codex, Copilot, OpenCode, and Pi. You can start at the desk and open the same agents from a phone. Pairing can use an end-to-end encrypted relay, or direct TCP or Tailscale if you decline it. Plugins run on the daemon host. There is no telemetry or forced login.",
+          "kind": "Desktop and mobile client",
+          "source": "https://github.com/getpaseo/paseo#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Superset",
+          "url": "https://github.com/superset-sh/superset",
+          "description": "Desktop workspace that runs Claude Code, Codex, OpenCode, Cursor Agent, or another CLI in a git worktree. macOS is the primary install, the Linux AppImage is experimental, and Windows is not available. Worktrees separate files but do not sandbox processes. It has terminals and diff review. An iPhone app can steer a connected computer only with Superset Pro, iOS 26 or later, and Remote Access.",
+          "kind": "Desktop app",
+          "source": "https://github.com/superset-sh/superset#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Emdash",
+          "url": "https://github.com/generalaction/emdash",
+          "description": "Desktop app for macOS, Windows, and Linux that runs installed CLIs such as Claude Code, Codex, OpenCode, and Amp, each task in its own git worktree. State stays in a local SQLite database, and SSH credentials stay in the OS keychain. It does not send code or chats to Emdash servers, though each CLI still talks to its provider. Hooks apply to Emdash sessions only.",
+          "kind": "Desktop app",
+          "source": "https://github.com/generalaction/emdash#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Codeg",
+          "url": "https://github.com/xintaofei/codeg",
+          "description": "Workspace that imports and resumes Claude Code, Codex, OpenCode, and Gemini sessions and can pass part of a turn to another agent with @. It runs as a desktop app, headless server, or Docker. iOS and Android clients only connect to that host. Files, CLIs, and conversations stay on that machine. Unattended to-dos get a worktree and wait in review until you accept them.",
+          "kind": "Multi-agent workspace",
+          "source": "https://github.com/xintaofei/codeg#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Jean",
+          "url": "https://github.com/coollabsio/jean",
+          "description": "Tauri desktop app that drives installed CLIs, including Claude Code, Codex, Cursor, OpenCode, Pi, and Grok, across local projects and git worktrees. Sessions use Plan, Build, or Yolo modes, with a plan-approval step. An optional token-protected HTTP server can serve that UI to a browser on your network. macOS is tested, Windows is not fully tested, and Linux is community tested.",
+          "kind": "Desktop app",
+          "source": "https://github.com/coollabsio/jean#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Helmor",
+          "url": "https://github.com/dohooo/helmor",
+          "description": "Local workbench that runs Claude Code, Codex, Cursor, OpenCode, and Kimi in parallel, each task in a git worktree under ~/helmor/ on your machine. Downloads list macOS and Windows, and the CLIs are bundled. The window shows diffs and pull requests. A CLI and MCP server share one local database. An experimental phone path tunnels to the desktop, and no Linux build is listed.",
+          "kind": "Desktop app",
+          "source": "https://github.com/dohooo/helmor#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Proliferate",
+          "url": "https://github.com/proliferate-ai/proliferate",
+          "description": "macOS app that runs Claude Code, Codex, OpenCode, Cursor, and Grok through each tool's native harness. Each task gets an isolated git worktree for its branch, terminal, conversation, and review state. The control plane can be Docker or cloud, and the desktop can point at it. Which machine executes the agent once that control plane is remote is not stated.",
+          "kind": "Desktop IDE",
+          "source": "https://github.com/proliferate-ai/proliferate#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Sculptor",
+          "url": "https://github.com/imbue-ai/sculptor",
+          "description": "Experimental desktop research preview for agents in parallel workspaces. Each workspace is an isolated copy of your code, as isolated worktrees of the repo. Integrated choices are the Pi harness and Claude Code, and any terminal-based agent can be started from the app. You can review, then open a GitHub pull request. Downloads list Mac Apple Silicon and Linux. Container or remote execution is experimental.",
+          "kind": "Desktop app",
+          "source": "https://github.com/imbue-ai/sculptor#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Supacode",
+          "url": "https://github.com/supabitapp/supacode",
+          "description": "Native macOS app that puts each coding-agent task in its own git worktree and a terminal kept by a background session daemon, so quitting the app does not drop scrollback. A beta SSH mode manages a remote repository over one multiplexed connection when that host runs the same daemon, and hooks the app installs flag Claude, Codex, and Copilot panes as busy, waiting, or idle.",
+          "kind": "macOS app",
+          "source": "https://github.com/supabitapp/supacode#readme",
+          "checked": "2026-09-30"
         }
       ]
     },
@@ -87,18 +373,42 @@
         {
           "name": "CloudCLI",
           "url": "https://github.com/siteboon/claudecodeui",
-          "description": "Web interface for accessing coding-agent sessions and projects from desktop or mobile browsers.",
+          "description": "Web interface for Claude Code, Cursor CLI, and Codex, opened in a desktop or mobile browser while agents run on the host machine. The self-hosted app discovers local sessions and uses Claude Code's own settings, with tools disabled until you enable them. An experimental sandbox and a separate hosted service are described. The local server needs no account.",
           "kind": "Web client",
           "source": "https://github.com/siteboon/claudecodeui#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "Happy",
           "url": "https://github.com/slopus/happy",
-          "description": "Mobile and web client for interacting with Claude Code and Codex sessions.",
+          "description": "Mobile and web client, plus a separate macOS desktop download, for Claude Code and Codex sessions started by a wrapper on your computer. Running happy claude or happy codex launches the agent. The phone restarts that session in remote mode and does not host the agent. Sync is end-to-end encrypted, and notifications arrive for permission or errors. The computer has to stay available.",
           "kind": "Mobile and web client",
           "source": "https://github.com/slopus/happy#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Kanna",
+          "url": "https://github.com/jakemor/kanna",
+          "description": "Local web UI on a Bun server that runs Claude Code, Codex, Cursor, or Grok as child processes and ships a Pi agent in-process. Chats group by project, sessions can resume, and plan mode asks you to approve a plan before execution. History is JSONL in a local directory. Other machines can connect if you bind a host. No native phone app is described.",
+          "kind": "Web client",
+          "source": "https://github.com/jakemor/kanna#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "OpenCode Mobile",
+          "url": "https://github.com/dzianisv/opencode-mobile",
+          "description": "Android client for an OpenCode server you run yourself over LAN, Tailscale, a Cloudflare Tunnel, or ngrok. It speaks OpenCode's HTTP and event stream, so model calls and files stay on that server. You can approve tool calls, and credentials sit in the Android Keystore. There is an offline demo and no iOS build. The app is not made or endorsed by the OpenCode project.",
+          "kind": "Android client",
+          "source": "https://github.com/dzianisv/opencode-mobile#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "VibeTunnel",
+          "url": "https://github.com/amantus-ai/vibetunnel",
+          "description": "Terminal proxy that puts shells in a browser so you can run or watch commands, including Claude Code, from another device. The menu-bar app is Apple Silicon Mac only. The npm server covers Linux and Intel Macs on recent Node, and Windows is not supported. Access is direct HTTP or Tailscale. Approval prompts stay in the proxied terminal, not a separate review UI.",
+          "kind": "Terminal proxy",
+          "source": "https://github.com/amantus-ai/vibetunnel#readme",
+          "checked": "2026-09-30"
         }
       ]
     },
@@ -108,18 +418,180 @@
         {
           "name": "Agent Sessions",
           "url": "https://github.com/jazzyalex/agent-sessions",
-          "description": "macOS app for searching local coding-agent histories and resuming supported sessions.",
+          "description": "macOS app that searches local transcripts from Codex, Claude Code, Cursor, OpenCode, and other coding-agent formats, then resumes supported sessions by copying a command or opening the CLI in Terminal, iTerm2, or Warp. The search index stays on the Mac, and session history is not uploaded. OpenClaw is browse-only, with no resume. It reads logs rather than starting new work.",
           "kind": "Session browser",
           "source": "https://github.com/jazzyalex/agent-sessions#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
         },
         {
           "name": "Claude Squad",
           "url": "https://github.com/smtg-ai/claude-squad",
-          "description": "Terminal interface for managing several coding-agent sessions in parallel.",
+          "description": "Terminal app that runs Claude Code, Codex, Gemini, Aider, OpenCode, Amp, and other local programs in separate tmux sessions and git worktrees. You watch them from one window, switch between a preview and a diff, and can check changes out before pushing. An experimental flag auto-accepts prompts for Claude Code and Aider. It needs tmux and the GitHub CLI. Config lives in its home directory.",
           "kind": "Terminal app",
           "source": "https://github.com/smtg-ai/claude-squad#readme",
-          "checked": "2026-09-29"
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "herdr",
+          "url": "https://github.com/herdrdev/herdr",
+          "description": "Terminal program that keeps panes for CLIs you already run, including Claude Code, Codex, Cursor, OpenCode, and Grok, inside a background server. It does not wrap or replace those agents. It owns their terminals and marks each pane working, blocked, or idle. A saved layout can return after a restart, but the original processes do not survive. Local and SSH machines share one window.",
+          "kind": "Terminal runtime",
+          "source": "https://github.com/herdrdev/herdr#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Toad",
+          "url": "https://github.com/batrachianai/toad",
+          "description": "Terminal UI for Linux and macOS. Native Windows support is lacking, though WSL is noted. It launches Claude, Gemini, and Codex through the Agent Client Protocol. A shell keeps its directory and environment between prompts, several agents can run at once, and earlier sessions can resume. Toad is licensed under AGPL-3.0, the GNU Affero General Public License version 3.",
+          "kind": "Terminal UI",
+          "source": "https://github.com/batrachianai/toad#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "dmux",
+          "url": "https://github.com/standardagents/dmux",
+          "description": "Terminal multiplexer that creates a tmux pane, git worktree, and branch per task and can start Claude Code, Codex, OpenCode, Gemini CLI, Cursor CLI, and others. The pane menu can merge the branch or open a GitHub pull request. Recreating a pane can resume a tracked Codex or Claude conversation. Optional inference login names and summarizes without replacing the agent CLI.",
+          "kind": "Terminal multiplexer",
+          "source": "https://github.com/standardagents/dmux#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Agent Deck",
+          "url": "https://github.com/asheshgoplani/agent-deck",
+          "description": "Terminal session manager for macOS, Linux, and Windows through WSL that lists Claude, Gemini, OpenCode, Codex, and other coding-agent sessions in one text UI. You can fork a supported session, send a prompt, attach MCP servers, or open a web UI on localhost, and a conductor flow can watch Claude sessions from Telegram; sandboxed sessions get a container shell.",
+          "kind": "Terminal app",
+          "source": "https://github.com/asheshgoplani/agent-deck#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Pane",
+          "url": "https://github.com/greenfield-inc/Pane",
+          "description": "Terminal-first manager for macOS, Windows, and Linux that runs an existing CLI, including Claude Code, Codex, Cursor Agent, Aider, or Goose, instead of replacing it. A new session creates a git worktree, and removing the session cleans it up. Status marks show when an agent is waiting for approval. Remote Pane is self-hosted, so the host keeps the repos, credentials, and processes.",
+          "kind": "Terminal manager",
+          "source": "https://github.com/greenfield-inc/Pane#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Parallel Code",
+          "url": "https://github.com/johannesjo/parallel-code",
+          "description": "Electron app for macOS and Linux that starts Claude Code, Codex, Gemini CLI, Copilot CLI, or Antigravity, each task on its own git branch and worktree. You review diffs, comment inline, and merge from the sidebar. A phone can watch over Wi-Fi or Tailscale after a QR scan. Optional Docker isolation does not cover Antigravity, because that CLI's keyring login cannot run inside the container.",
+          "kind": "Electron app",
+          "source": "https://github.com/johannesjo/parallel-code#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "cmux",
+          "url": "https://github.com/manaflow-ai/cmux",
+          "description": "Native macOS terminal, using libghostty, whose sidebar lights up when a coding agent notifies it or a hook says it is waiting. Resume hooks for Claude Code, Codex, OpenCode, and other listed CLIs can store a session id and rerun it, and you can turn that off. It is a terminal you drive yourself, not a worktree manager or an approval policy.",
+          "kind": "macOS terminal",
+          "source": "https://github.com/manaflow-ai/cmux#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Agent of Empires",
+          "url": "https://github.com/agent-of-empires/agent-of-empires",
+          "description": "Session manager for Linux and macOS, with a text UI, browser dashboard, CLI, and HTTP API. Each agent runs in its own tmux session and keeps going after you detach. It covers Claude Code, OpenCode, Codex, Gemini CLI, Copilot CLI, and other terminal agents. Git worktrees, plus optional Docker, Podman, or Apple containers, separate the work. A diff view is included.",
+          "kind": "Terminal session manager",
+          "source": "https://github.com/agent-of-empires/agent-of-empires#readme",
+          "checked": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "title": "Editor integrations",
+      "projects": [
+        {
+          "name": "CC GUI",
+          "url": "https://github.com/zhukunpenglinyutong/jetbrains-cc-gui",
+          "description": "JetBrains plugin that opens chat and diffs for installed CLIs, mainly Claude Code and Codex, with Grok, Kimi, and OpenCode marked beta. You accept or reject edits in the IDE, with permission controls and message export. The plugin starts those CLIs rather than calling a model API, so sign-in stays with the agent. It does not run the agent on another machine.",
+          "kind": "JetBrains plugin",
+          "source": "https://github.com/zhukunpenglinyutong/jetbrains-cc-gui#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Obsidian Agent Client",
+          "url": "https://github.com/RAIT-09/obsidian-agent-client",
+          "description": "Obsidian plugin that starts installed Agent Client Protocol agents, including Claude Code, Codex, and Gemini CLI, as child processes that can read and edit vault notes. Each action asks permission unless you turn on auto-allow. Sessions can resume when the agent supports it, and chats can be written as Markdown. It is desktop-only. Agents keep terminal access, and API keys sit in Obsidian's keychain.",
+          "kind": "Obsidian plugin",
+          "source": "https://github.com/RAIT-09/obsidian-agent-client#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "agent-shell",
+          "url": "https://github.com/xenodium/agent-shell",
+          "description": "Emacs package that opens a buffer on Agent Client Protocol agents you install yourself, including Claude Code, Codex, Gemini CLI, Goose, Cursor, and OpenCode. The editor is only the interface. The agent process is still that CLI, reached through the companion package acp.el. Optional add-ons cover notifications and review. No sandbox around the agent is documented.",
+          "kind": "Emacs package",
+          "source": "https://github.com/xenodium/agent-shell#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "claudecode.nvim",
+          "url": "https://github.com/coder/claudecode.nvim",
+          "description": "Neovim plugin that starts the Claude Code CLI in a split terminal. It creates a WebSocket server on a random port, and the CLI connects to that server. Proposed edits open as Neovim diffs you accept or reject. It needs Neovim 0.8 or newer, the Claude Code CLI, and snacks.nvim. The plugin is marked beta.",
+          "kind": "Neovim plugin",
+          "source": "https://github.com/coder/claudecode.nvim#readme",
+          "checked": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "title": "Team and multi-agent control planes",
+      "projects": [
+        {
+          "name": "Mission Control",
+          "url": "https://github.com/builderz-labs/mission-control",
+          "description": "Self-hosted web app for tasks and runs from OpenClaw, Claude Code, and Codex, plus CrewAI, LangGraph, and AutoGen with uneven adapter coverage. The dashboard runs on your machine against SQLite. You create the first admin and an API key. It is alpha, so read its guidance before exposing the port. It records approvals and spend but does not replace the agent's tool loop.",
+          "kind": "Web control plane",
+          "source": "https://github.com/builderz-labs/mission-control#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Gas Town",
+          "url": "https://github.com/gastownhall/gastown",
+          "description": "Workspace manager that runs Claude Code by default, or Copilot, Codex, Gemini, or Cursor. Work lives in git-backed hooks, not only agent memory. The Mayor oversees workers in git worktrees, and a merge queue handles finished branches. Install Git, tmux, and the agent CLI, or use the Docker sandbox. No graphical approval inbox apart from the CLIs.",
+          "kind": "Workspace manager",
+          "source": "https://github.com/gastownhall/gastown#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Multica",
+          "url": "https://github.com/multica-ai/multica",
+          "description": "Source-available workspace where CLIs such as Claude Code, Codex, Cursor, Copilot, and OpenCode are assignees on a computer you connect. The agent comments on the issue, and the result waits for review rather than merging itself. Live steering is documented for Claude Code, Codex, and Grok. Self-hosting uses Docker Compose or Helm. A daily anonymous snapshot of version and bucketed counts is sent unless DO_NOT_TRACK=1.",
+          "kind": "Team workspace",
+          "source": "https://github.com/multica-ai/multica#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "BOSS",
+          "url": "https://github.com/risa-labs-inc/BossConsole",
+          "description": "Desktop console for macOS, Windows, and Linux that runs Claude Code, Codex, Gemini CLI, or OpenCode in its terminal. A loopback MCP server exposes the embedded browser, editor, git tools, and secrets. Role checks and a per-tool kill switch decide which tools an agent may call. A QR flow can share the terminal with a phone while execution stays on your machine.",
+          "kind": "Desktop console",
+          "source": "https://github.com/risa-labs-inc/BossConsole#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Cline Kanban",
+          "url": "https://github.com/cline/kanban",
+          "description": "Local web preview, started with npx kanban in a git repo, that gives every card its own terminal and git worktree and launches the CLI it finds installed. This research preview can bypass permissions, and linked cards with auto-commit can start the next task alone. You can instead watch the card, comment, commit, or open a pull request yourself.",
+          "kind": "Local web app",
+          "source": "https://github.com/cline/kanban#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "Agent Orchestrator",
+          "url": "https://github.com/Untrivial-ai/agent-orchestrator",
+          "description": "Local desktop app for macOS, Windows, and Linux that supervises harnesses you already use, with one worker, one branch, and one git worktree per task. A project orchestrator can split a plan into those workers. The kanban comes from session, pull request, CI, and review state, including work that needs a person. A bundled daemon watches the agents. Chat or the agent terminal is available.",
+          "kind": "Desktop control plane",
+          "source": "https://github.com/Untrivial-ai/agent-orchestrator#readme",
+          "checked": "2026-09-30"
+        },
+        {
+          "name": "AI Maestro",
+          "url": "https://github.com/23blocks-OS/ai-maestro",
+          "description": "Local dashboard for terminal agents such as Claude Code, Codex, and Aider. The UI sits on your machine. Agents run in tmux or in optional Docker, EC2, or ECS placements, and other computers join a peer mesh with no central server. Agents can message each other while you are away. A memory skill stores notes redacted of secrets. Windows is documented through WSL2.",
+          "kind": "Local control plane",
+          "source": "https://github.com/23blocks-OS/ai-maestro#readme",
+          "checked": "2026-09-30"
         }
       ]
     }
@@ -128,20 +600,30 @@
     {
       "name": "1shiharat/awesome-agent-clients",
       "url": "https://github.com/1shiharat/awesome-agent-clients",
-      "description": "A broader directory of clients and orchestrators."
+      "description": "Small directory of desktop, terminal, and mobile apps that run existing coding-agent CLIs. Closest scope match to this list."
     },
     {
       "name": "hesreallyhim/awesome-claude-code",
       "url": "https://github.com/hesreallyhim/awesome-claude-code",
-      "description": "Community resources for the Claude Code ecosystem."
+      "description": "Large Claude Code collection. Most entries are skills, hooks, and plugins rather than clients."
     },
     {
       "name": "subinium/awesome-claude-code",
       "url": "https://github.com/subinium/awesome-claude-code",
-      "description": "Claude Code tools, extensions, and integrations."
+      "description": "Claude Code tools, skills, and MCP servers. A narrower companion to the larger Claude Code list."
+    },
+    {
+      "name": "bradAGI/awesome-cli-coding-agents",
+      "url": "https://github.com/bradAGI/awesome-cli-coding-agents",
+      "description": "Directory of terminal coding agents and harnesses. Use it to find the agent a client would drive, not the client itself."
+    },
+    {
+      "name": "Picrew/awesome-agent-harness",
+      "url": "https://github.com/Picrew/awesome-agent-harness",
+      "description": "Harness-engineering resources, listed so harness repositories are not mistaken for clients."
     }
   ],
   "slug": "awesome-agent-clients",
-  "checked": "2026-09-29",
+  "checked": "2026-09-30",
   "introduction": "You already have a coding agent. The next question is how you want to work with it: review changes in a desktop workspace, steer a session from your phone, or keep several projects moving from a terminal. Start with the agent you use and the task you want to make easier."
 }
