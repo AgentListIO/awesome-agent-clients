@@ -8,7 +8,7 @@
 
 > Desktop, terminal, mobile, and web clients for coding agents, organized by how you work.
 
-45 projects · Upstream documentation checked 2026-09-30. Curated by [agentlist.io](https://www.agentlist.io).
+46 projects · Upstream documentation checked 2026-09-30–2026-10-02. Curated by [agentlist.io](https://www.agentlist.io).
 
 **Bring your own agent. Find a better way to work with it.**
 
@@ -90,6 +90,7 @@ Start with your requirement. These examples highlight documented differences; th
 - [Happy](https://github.com/slopus/happy) - Mobile and web client, plus a separate macOS desktop download, for Claude Code and Codex sessions started by a wrapper on your computer. Running happy claude or happy codex launches the agent. The phone restarts that session in remote mode and does not host the agent. Sync is end-to-end encrypted, and notifications arrive for permission or errors. The computer has to stay available. **Mobile and web client.**
 - [Kanna](https://github.com/jakemor/kanna) - Local web UI on a Bun server that runs Claude Code, Codex, Cursor, or Grok as child processes and ships a Pi agent in-process. Chats group by project, sessions can resume, and plan mode asks you to approve a plan before execution. History is JSONL in a local directory. Other machines can connect if you bind a host. No native phone app is described. **Web client.**
 - [OpenCode Mobile](https://github.com/dzianisv/opencode-mobile) - Android client for an OpenCode server you run yourself over LAN, Tailscale, a Cloudflare Tunnel, or ngrok. It speaks OpenCode's HTTP and event stream, so model calls and files stay on that server. You can approve tool calls, and credentials sit in the Android Keystore. There is an offline demo and no iOS build. The app is not made or endorsed by the OpenCode project. **Android client.**
+- [Sillage](https://github.com/MarlBurroW/sillage) - Self-hosted, mobile-first web UI that drives the native Claude Code and Codex CLIs on your own machine. The browser or installable PWA steers a session while the CLI runs on that computer, which has to stay available. Sessions outlive the client, with full-text search across conversations, an IDE panel, and a board agents read through its own MCP server. **Mobile and web client.**
 - [VibeTunnel](https://github.com/amantus-ai/vibetunnel) - Terminal proxy that puts shells in a browser so you can run or watch commands, including Claude Code, from another device. The menu-bar app is Apple Silicon Mac only. The npm server covers Linux and Intel Macs on recent Node, and Windows is not supported. Access is direct HTTP or Tailscale. Approval prompts stay in the proxied terminal, not a separate review UI. **Terminal proxy.**
 
 ## Terminal and session navigation
