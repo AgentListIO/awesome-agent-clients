@@ -403,6 +403,14 @@
           "checked": "2026-09-30"
         },
         {
+          "name": "Sillage",
+          "url": "https://github.com/MarlBurroW/sillage",
+          "description": "Self-hosted, mobile-first web UI that drives the native Claude Code and Codex CLIs on your own machine. The browser or installable PWA steers a session while the CLI runs on that computer, which has to stay available. Sessions outlive the client, with full-text search across conversations, an IDE panel, and a board agents read through its own MCP server.",
+          "kind": "Mobile and web client",
+          "source": "https://github.com/MarlBurroW/sillage#readme",
+          "checked": "2026-10-02"
+        },
+        {
           "name": "VibeTunnel",
           "url": "https://github.com/amantus-ai/vibetunnel",
           "description": "Terminal proxy that puts shells in a browser so you can run or watch commands, including Claude Code, from another device. The menu-bar app is Apple Silicon Mac only. The npm server covers Linux and Intel Macs on recent Node, and Windows is not supported. Access is direct HTTP or Tailscale. Approval prompts stay in the proxied terminal, not a separate review UI.",
