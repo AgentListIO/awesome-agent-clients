@@ -8,7 +8,7 @@
 
 > Desktop, terminal, mobile, and web clients for coding agents, organized by how you work.
 
-45 projects · Upstream documentation checked 2026-09-30. Curated by [agentlist.io](https://www.agentlist.io).
+46 projects · Upstream documentation checked 2026-09-30–2026-11-22. Curated by [agentlist.io](https://www.agentlist.io).
 
 **Bring your own agent. Find a better way to work with it.**
 
@@ -83,6 +83,7 @@ Start with your requirement. These examples highlight documented differences; th
 - [Proliferate](https://github.com/proliferate-ai/proliferate) - macOS app that runs Claude Code, Codex, OpenCode, Cursor, and Grok through each tool's native harness. Each task gets an isolated git worktree for its branch, terminal, conversation, and review state. The control plane can be Docker or cloud, and the desktop can point at it. Which machine executes the agent once that control plane is remote is not stated. **Desktop IDE.**
 - [Sculptor](https://github.com/imbue-ai/sculptor) - Experimental desktop research preview for agents in parallel workspaces. Each workspace is an isolated copy of your code, as isolated worktrees of the repo. Integrated choices are the Pi harness and Claude Code, and any terminal-based agent can be started from the app. You can review, then open a GitHub pull request. Downloads list Mac Apple Silicon and Linux. Container or remote execution is experimental. **Desktop app.**
 - [Supacode](https://github.com/supabitapp/supacode) - Native macOS app that puts each coding-agent task in its own git worktree and a terminal kept by a background session daemon, so quitting the app does not drop scrollback. A beta SSH mode manages a remote repository over one multiplexed connection when that host runs the same daemon, and hooks the app installs flag Claude, Codex, and Copilot panes as busy, waiting, or idle. **macOS app.**
+- [Valo](https://getvalo.dev) - Desktop workspace that runs Claude Code, Codex, Gemini, Cursor and GLM side by side on Windows, macOS and Linux, with per-tool permissions. The workspace supports multiple projects and parallel chats in one window, with context control per tool, skill, and agent. **Desktop app.**
 
 ## Mobile and remote access
 

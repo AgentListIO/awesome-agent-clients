@@ -364,6 +364,14 @@
           "kind": "macOS app",
           "source": "https://github.com/supabitapp/supacode#readme",
           "checked": "2026-09-30"
+        },
+        {
+          "name": "Valo",
+          "url": "https://getvalo.dev",
+          "description": "Desktop workspace that runs Claude Code, Codex, Gemini, Cursor and GLM side by side on Windows, macOS and Linux, with per-tool permissions. The workspace supports multiple projects and parallel chats in one window, with context control per tool, skill, and agent.",
+          "kind": "Desktop app",
+          "source": "https://getvalo.dev/features",
+          "checked": "2026-11-22"
         }
       ]
     },
